@@ -1,0 +1,134 @@
+  
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block navbar %}
+<section class="navbar main-menu">
+    <div class="navbar-inner main-menu">				
+        <a href="{% url 'index' %}" class="logo pull-left"><img src="{% static 'themes/images/logo.png' %}" class="site_logo" alt=""></a>
+        <nav id="menu" class="pull-right">
+            <ul>
+                {% for category in category %}
+                <li><a href="{% url 'category' category.id %}">{{category.name}}</a></li>
+                {% endfor %}
+            </ul>
+        </nav>
+    </div>
+</section>
+{% endblock navbar %}
+
+{% block slider %}
+<section  class="homepage-slider" id="home-slider">
+    <div class="flexslider">
+        <ul class="slides">
+            <li>
+                <img src="themes/images/carousel/banner-1.jpg" alt="" />
+            </li>
+            <li>
+                <img src="themes/images/carousel/banner-2.jpg" alt="" />
+                <div class="intro">
+                    <h1>Mid season sale</h1>
+                    <p><span>Up to 50% Off</span></p>
+                    <p><span>On selected items online and in stores</span></p>
+                </div>
+            </li>
+        </ul>
+    </div>			
+</section>
+{% endblock slider %}
+
+{% block main-content %}
+<section class="main-content">
+    <div class="row">
+        <div class="span12">													
+            <div class="row">
+                <div class="span12">
+                    <h4 class="title">
+                        <span class="pull-left"><span class="text"><span class="line">Feature <strong>Products</strong></span></span></span>
+                        <span class="pull-right">
+                            <a class="left button" href="#myCarousel" data-slide="prev"></a><a class="right button" href="#myCarousel" data-slide="next"></a>
+                        </span>
+                    </h4>
+                    <div id="myCarousel" class="myCarousel carousel slide">
+                        <div class="carousel-inner">
+                            <div class="active item">
+                                <ul class="thumbnails">	
+                                    {% for feature in featured_products %}
+                                    <li class="span3">
+                                        <div class="product-box">
+                                            <span class="sale_tag"></span>
+                                            <p><a href="{{feature.get_absolute_url}}"><img src="{{feature.image.url}}" alt="" /></a></p>
+                                            <a href="{{feature.get_absolute_url}}." class="title">{{feature.name}}</a><br/>
+                                            <a href="{{feature.get_absolute_url}}" class="category">{{feature.category}}</a>
+                                            <p class="price">{{feature.price}}</p>
+                                        </div>
+                                    </li> 			
+                                    {% endfor %}											  																					
+                                </ul>
+                            </div>
+                        </div>							
+                    </div>
+                </div>						
+            </div>
+            <br/>
+            <div class="row">
+                <div class="span12">
+                    <h4 class="title">
+                        <span class="pull-left"><span class="text"><span class="line">Latest <strong>Products</strong></span></span></span>
+                        <span class="pull-right">
+                            <a class="left button" href="#myCarousel-2" data-slide="prev"></a><a class="right button" href="#myCarousel-2" data-slide="next"></a>
+                        </span>
+                    </h4>
+                    <div id="myCarousel-2" class="myCarousel carousel slide">
+                        <div class="carousel-inner">
+                            <div class="active item">
+                                <ul class="thumbnails">	
+                                    {% for product in products %}
+                                    <li class="span3">
+                                        <div class="product-box">
+                                            <span class="sale_tag"></span>
+                                            <p><a href="{{product.get_absolute_url}}"><img src="{{product.image.url}}" alt="" /></a></p>
+                                            <a href="{{product.get_absolute_url}}" class="title">{{product.name}}</a><br/>
+                                            <a href="{{product.get_absolute_url}}" class="category">{{product.category}}</a>
+                                            <p class="price">${{product.price}}</p>
+                                        </div>
+                                    </li>
+                                    {% endfor %}																						
+                                </ul>
+                            </div>
+                        </div>							
+                    </div>
+                </div>						
+            </div>
+            <div class="row feature_box">						
+                <div class="span4">
+                    <div class="service">
+                        <div class="responsive">	
+                            <img src="themes/images/feature_img_2.png" alt="" />
+                            <h4>MODERN <strong>DESIGN</strong></h4>
+                            <p>Lorem Ipsum is simply dummy text of the printing and printing industry unknown printer.</p>									
+                        </div>
+                    </div>
+                </div>
+                <div class="span4">	
+                    <div class="service">
+                        <div class="customize">			
+                            <img src="themes/images/feature_img_1.png" alt="" />
+                            <h4>FREE <strong>SHIPPING</strong></h4>
+                            <p>Lorem Ipsum is simply dummy text of the printing and printing industry unknown printer.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="span4">
+                    <div class="service">
+                        <div class="support">	
+                            <img src="themes/images/feature_img_3.png" alt="" />
+                            <h4>24/7 LIVE <strong>SUPPORT</strong></h4>
+                            <p>Lorem Ipsum is simply dummy text of the printing and printing industry unknown printer.</p>
+                        </div>
+                    </div>
+                </div>	
+            </div>		
+        </div>				
+    </div>
+</section>
+{% endblock main-content %}

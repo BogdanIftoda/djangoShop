@@ -1,0 +1,39 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block navbar %}
+<section class="navbar main-menu">
+    <div class="navbar-inner main-menu">				
+        <a href="{% url 'index' %}" class="logo pull-left"><img src="{% static 'themes/images/logo.png' %}" class="site_logo" alt=""></a>
+        <nav id="menu" class="pull-right">
+            <ul>
+                {% for category in category %}
+                <li><a href="./products.html">{{category.name}}</a></li>
+                {% endfor %}
+            </ul>
+        </nav>
+    </div>
+</section>
+{% endblock navbar %}
+
+{% block main-content %}
+<section class="main-content">				
+    <div class="row">
+        <div class="span7">					
+            <h4 class="title"><span class="text"><strong>Profile</strong> Form</span></h4>
+            <form method="POST" class="form-stacked">
+                <fieldset>
+                    {% for field in form %}
+                    <div class="control-group">
+                        {% csrf_token %}
+                        {{field.label_tag}}
+                        {{field}}
+                    </div>
+                    {% endfor %}
+                    <hr>
+                    <div class="actions"><input tabindex="9" class="btn btn-inverse large" type="submit" value="Create your account"></div> 
+                </fieldset>
+            </form>					
+        </div>				
+    </div>
+</section>	
+{% endblock main-content %}

@@ -1,0 +1,37 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+{% block navbar %}
+<section class="navbar main-menu">
+    <div class="navbar-inner main-menu">				
+        <a href="{% url 'index' %}" class="logo pull-left"><img src="{% static 'themes/images/logo.png' %}" class="site_logo" alt=""></a>
+        <nav id="menu" class="pull-right">
+            <ul>
+               {% for category in category %}
+                <li><a href="{% url 'category' category.id %}">{{category.name}}</a></li>
+                {% endfor %}
+            </ul>
+        </nav>
+    </div>
+</section>
+{% endblock navbar %}
+
+{% block main-content %}
+<section class="main-content">				
+    <div class="row">						
+        <div class="span9">								
+            <ul class="thumbnails listing-products">
+                {% for product in products %}
+                <li class="span3">
+                    <div class="product-box">
+                        <span class="sale_tag"></span>
+                        <p><a href="{{product.get_absolute_url}}"><img src="{{product.image.url}}" alt="" /></a></p>
+                        <a href="product_detail.html" class="title">{{product.name}}</a><br/>
+                        <a href="products.html" class="category">{{product.category}}</a>
+                        <p class="price">${{product.price}}</p>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock main-content %}
